@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: nginx
+          image: {{ .Values.images.nginx.repository }}:{{ .Values.images.nginx.tag }}
+          ports:
+            - containerPort: 80
+        - name: redis
+          image: {{ .Values.images.redis.repository }}:{{ .Values.images.redis.tag }}
+          ports:
+            - containerPort: 6379

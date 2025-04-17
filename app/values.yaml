@@ -1,0 +1,19 @@
+namespace: my-app
+replicaCount: 3
+
+images:
+  nginx:
+    repository: nginx
+    tag: latest
+  redis:
+    repository: redis
+    tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: 213.35.199.17/32,94.246.251.4/32,78.84.154.235/32

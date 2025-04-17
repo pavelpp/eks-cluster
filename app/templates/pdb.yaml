@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: my-app-pdb
+  namespace: {{ .Values.namespace }}
+spec:
+  minAvailable: 100%
+  selector:
+    matchLabels:
+      app: my-app
