@@ -50,16 +50,17 @@ module "eks" {
     }
   }
 
-
+  eks_managed_node_group_defaults = {
+    ami_type  = "AL2_ARM_64"
+  }
   eks_managed_node_groups = {
     default = {
-      min_size     = 1
+      min_size     = 3
       max_size     = 3
-      desired_size = 1
+      desired_size = 3
 
-      capacity_type  = "SPOT"
+      instance_types = [var.instance_type]
 
-      instance_types = ["t3.medium"]
     }
   }
 }
